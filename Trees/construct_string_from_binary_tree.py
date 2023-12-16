@@ -20,7 +20,7 @@ class Solution1: #Time complexity O(n), Space complexity O(n)
 
         return str(root.val) + "(" + str(self.tree2str(root.left)) + ")"+ right
     
-class Solution2: #Same time complexity but more efficient, string concatenation leads to O(n)
+class Solution2: #Same time complexity but more efficient, string concatenation leads to O(n ^ 2)
     def tree2str(self, root: Optional[TreeNode]) -> str:
         res = []
 
