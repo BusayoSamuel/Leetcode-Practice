@@ -45,3 +45,20 @@ class Solution: #O(nlogn) time complexity, #0(1) space complexity
             r += 1
 
         return res
+    
+class Attempt2: #O(n^2) time complexity #O(n) space complexity, Not efficient enough
+    def maxFrequency(self, nums: List[int], k: int) -> int:
+        nums.sort()
+        res = 1
+        for i in range(len(nums)):
+            ops = k
+            count = 0
+            for j in range(i, -1, -1):
+                if nums[i] - nums[j] <= ops:
+                    ops -= nums[i] - nums[j]
+                    count += 1
+                else:
+                    break
+            res = max(res, count)
+                
+        return res
