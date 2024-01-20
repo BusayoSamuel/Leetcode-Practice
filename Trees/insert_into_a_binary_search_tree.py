@@ -47,3 +47,31 @@ class SimplerSolution: #Same time complexity
         else:
             root.left = self.insertIntoBST(root.left, val)
         return root
+
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class IterativeSolution:
+    def insertIntoBST(self, root: Optional[TreeNode], val: int) -> Optional[TreeNode]:
+        curNode = root
+
+        while True:
+            if not curNode:
+                return TreeNode(val)
+
+            if val > curNode.val: 
+                if curNode.right:
+                    curNode = curNode.right
+                else:
+                    curNode.right = TreeNode(val)
+                    return root
+            else:
+                if curNode.left:
+                    curNode = curNode.left
+                else:
+                    curNode.left = TreeNode(val)
+                    return root
