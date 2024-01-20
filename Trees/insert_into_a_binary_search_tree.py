@@ -55,7 +55,7 @@ class SimplerSolution: #Same time complexity
 #         self.val = val
 #         self.left = left
 #         self.right = right
-class IterativeSolution:
+class IterativeSolution: #Time complexity O(logn), Space complexity O(1)
     def insertIntoBST(self, root: Optional[TreeNode], val: int) -> Optional[TreeNode]:
         curNode = root
 
