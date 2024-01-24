@@ -6,8 +6,8 @@ class Solution: #Time complexity O(n), Space complexity O(n)
     def calculate(self, s: str) -> int:
         num = 0
         stack = []
-        pre_op = "+"
-        s += "+"
+        pre_op = "+" #This ensures the first number is simply added to the stack, this will maintain the state of the preceding operator
+        s += "+" #This is necessary to ensure the if/else branch is activated for the last number in the string
 
         for c in s:
             if c in {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"}:
