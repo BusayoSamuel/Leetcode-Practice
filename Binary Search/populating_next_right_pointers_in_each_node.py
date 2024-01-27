@@ -33,3 +33,22 @@ class Solution: #Time complexity O(n), Space complexity O(n)
                     node.next = q[0]
 
         return root
+
+
+class BetterSolution: #Time complexity O(n), Space complexity O(1)
+    def connect(self, root: 'Optional[Node]') -> 'Optional[Node]': 
+        #Two references are used - cur and nxt, next point on nxt level are updated while on cur level
+        cur = root
+        nxt = cur.left if cur else None 
+
+        while cur and nxt:
+            cur.left.next = cur.right
+            if cur.next:
+                cur.right.next = cur.next.left
+
+            cur = cur.next
+            if not cur: #Means we have come to the end of a level
+                cur = nxt
+                nxt = cur.left
+
+        return root
