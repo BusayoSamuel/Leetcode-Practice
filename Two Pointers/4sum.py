@@ -62,4 +62,38 @@ class Solution: #A more general solution for all kinds of sums using recursion
         results = []
         findNsum(0, len(nums)-1, target, 4, [], results)
         return results
+    
+
+class MySolution: #Similar to the one above
+    def fourSum(self, nums: List[int], target: int) -> List[List[int]]:
+        nums.sort()
+        res = []
+
+        def sum(initialsum, initialList, count, startidx):
+            if count > 2:
+                for i in range(startidx, len(nums) - count + 1):
+                    if  (i > startidx and nums[i] == nums[i-1]):
+                        continue
+                    sum(nums[i] + initialsum, initialList + [nums[i]], count - 1, i + 1)
+                return #Thiline is important as it ensures that that the code below doesn't run
+
+            l = startidx
+            r = len(nums) - 1
+
+            while l < r:
+                total = initialsum + nums[l] + nums[r]
+
+                if total > target:
+                    r -= 1
+                elif total < target:
+                    l += 1
+                else:
+                    res.append(initialList + [nums[l], nums[r]])
+                    l += 1
+                    while l < r and nums[l] == nums[l-1]:
+                        l += 1
+                
+
+        sum(0, [], 4, 0)
+        return res
             
