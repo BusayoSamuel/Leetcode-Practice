@@ -75,7 +75,7 @@ class MySolution: #Similar to the one above
                     if  (i > startidx and nums[i] == nums[i-1]):
                         continue
                     sum(nums[i] + initialsum, initialList + [nums[i]], count - 1, i + 1)
-                return #Thiline is important as it ensures that that the code below doesn't run
+                return #This line is important as it ensures that that the code below doesn't run
 
             l = startidx
             r = len(nums) - 1
