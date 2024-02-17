@@ -10,7 +10,7 @@ https://leetcode.com/problems/minimum-distance-between-bst-nodes/description/
 #         self.val = val
 #         self.left = left
 #         self.right = right
-class Solution:
+class Solution: #Time complexity O(n), Space complexity O(1)
     def minDiffInBST(self, root: Optional[TreeNode]) -> int:
         prev = None #start with prev
         res = float("inf")
