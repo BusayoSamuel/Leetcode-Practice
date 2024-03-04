@@ -46,3 +46,21 @@ class Solution: #Brute force attempt, Time complexity O(n^k), Space complexity O
         remove(num, k)
         res.sort()
         return str(res[0])
+
+class AlternativeStructureSolution: #Time complexity O(n), Space complexity O(n)
+    def removeKdigits(self, num: str, k: int) -> str:
+        stack = []
+
+        for i in range(len(num)):
+            while k and stack and stack[-1] > num[i]:
+                stack.pop()
+                k -= 1
+
+            if stack or num[i] != "0": #prevents leading zeros
+                stack.append(num[i])
+
+        stack = stack[:len(stack)-k]
+
+        res = "".join(stack)
+
+        return res or "0" #if res is empty then it would return zero
