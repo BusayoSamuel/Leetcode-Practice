@@ -25,3 +25,35 @@ class Solution: #Time complexity Olog(m*n), Space complexity O(1)
                     else:
                         return True
                 return False
+
+#A bit cleaner
+class Solution: #Same complexity
+    def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
+        n = len(matrix[0])
+        m = len(matrix)
+        top = 0
+        bottom = m - 1
+
+        while top <= bottom:
+            center = (top +  bottom)//2
+
+            if target < matrix[center][0]:
+                bottom = center - 1
+            elif target <= matrix[center][-1]: # if target fails the first condition, then certainly target is > matrix[center][0]
+                l = 0
+                r = n - 1
+
+                while l <= r:
+                    mid = (r+l)//2
+
+                    if target < matrix[center][mid]:
+                        r = mid - 1
+                    elif target > matrix[center][mid]:
+                        l = mid + 1
+                    else:
+                        return True
+                return False
+            else:
+                top = center + 1
+
+        return False
