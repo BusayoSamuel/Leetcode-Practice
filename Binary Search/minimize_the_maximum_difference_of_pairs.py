@@ -13,7 +13,7 @@ class Solution: #Time complexity O(nlog(max(nums)), Space complexity O(n) due to
                 if abs(nums[i] - nums[i+1]) <= threshold: #we count all pairs that are below the max difference
                     i += 2
                     cnt += 1
-                    if cnt == p:
+                    if cnt == p: #this means there are at least p pairs with differences <= the threshold, and so this max difference is valid
                         return True
                 else:
                     i += 1
