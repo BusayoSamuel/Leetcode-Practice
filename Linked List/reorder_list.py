@@ -7,49 +7,49 @@ https://leetcode.com/problems/reorder-list/description/
 #     def __init__(self, val=0, next=None):
 #         self.val = val
 #         self.next = next
-class Solution: #Time Complexity: O(n), Space Complexity: O(1)
+class Solution:  #Time Complexity: O(n), Space Complexity: O(1)
     def reorderList(self, head: Optional[ListNode]) -> None:
         """
         Do not return anything, modify head in-place instead.
         """
+        def getMid(node):
+            slow = node
+            fast = node.next #this ensures that the slow pointer stops just before the middle
 
-        list1 = head
-        list2 = self.reverse(self.split(head))
+            while fast and fast.next:
+                slow = slow.next
+                fast = fast.next.next
 
-        while list1 and list2:
-            temp1 = list1
-            temp2 = list2
-
-            list1 = list1.next
-            list2 = list2.next
-
-            temp1.next = temp2
-            temp2.next = list1
-
-    def split(self, head):
-        slow = head
-        fast = head.next
-
-        while fast and fast.next:
+            tmp = slow
             slow = slow.next
-            fast = fast.next.next
+            tmp.next = None #now we can set the tail of l1 to none before getting l2
 
-        mid = slow.next
-        slow.next = None
+            return slow
 
-        return mid
 
-    def reverse(self, head):
-        prev = None
-        curr = head
+        def reverse(node):
+            prev = None
+            curr = node
 
-        while curr:
-            temp = curr.next
-            curr.next = prev
-            prev = curr
-            curr = temp
+            while curr:
+                tmp = curr.next
+                curr.next = prev
+                prev = curr
+                curr = tmp
 
-        return prev
-
+            return prev
         
 
+        l1 = head
+        l2 = reverse(getMid(head))
+
+        while l1 and l2:
+            #1st pick is from l1
+            tmp = l1
+            l1 = l1.next
+            tmp.next = l2
+            
+            #2nd pick from l2
+            tmp = l2
+            l2 = l2.next
+            tmp.next = l1
