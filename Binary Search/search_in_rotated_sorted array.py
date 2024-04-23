@@ -62,3 +62,27 @@ class Solution2: #Same complexity but much cleaner
 
         return -1
         
+
+class Solution3:  #Same complexity, different structure
+    def search(self, nums: List[int], target: int) -> int:
+        l = 0
+        r = len(nums) - 1
+
+        while l <= r:
+            m = (r+l)//2
+
+            if target > nums[m]:
+                if nums[m] < nums[r] and nums[r] >= target:
+                    l += 1
+                else:
+                    r -= 1
+            elif target < nums[m]:
+                if nums[m] > nums[l] and nums[l] <= target:
+                    r -= 1
+                else:
+                    l += 1
+            else:
+                return m
+
+        return -1
+        
