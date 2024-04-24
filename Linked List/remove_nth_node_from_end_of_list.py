@@ -37,11 +37,6 @@ class Solution1: #Time complexity 0(n), Space complexity O(1)
         return reverse(dummy.next)
 
 
-# Definition for singly-linked list.
-# class ListNode:
-#     def __init__(self, val=0, next=None):
-#         self.val = val
-#         self.next = next
 class Solution2: #Shorter better solution, same time complexity
     def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
         dummy = ListNode(0, head)
@@ -57,5 +52,23 @@ class Solution2: #Shorter better solution, same time complexity
             left = left.next
 
         left.next = left.next.next
+
+        return dummy.next
+
+class AlternativeSolution2: #Alternative structure
+    def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
+        dummy = ListNode(0, head)
+        slow = dummy
+        fast = dummy
+
+        while fast.next:
+            if not n:
+                slow = slow.next
+            else:
+                n -= 1
+
+            fast = fast.next
+
+        slow.next = slow.next.next
 
         return dummy.next
