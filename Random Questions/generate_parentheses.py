@@ -2,7 +2,7 @@
 https://leetcode.com/problems/generate-parentheses/description/
 """
 
-class MySolution: #Time complexity O(2^n), Space complexity O(n)
+class MySolution: #Time complexity O(2^2n), Space complexity O(2^2n)
     def generateParenthesis(self, n: int) -> List[str]:
         res = []
         cur = []
@@ -40,8 +40,7 @@ class CleanerSolution: #Same complexity
         def backtrack(open, closed):
 
             if open == n and closed == n:
-                if cur[-1] == ")" and cur[0] == "(":
-                    res.append("".join(cur)) #not need for copy here cause join create a copy already
+                res.append("".join(cur)) #not need for copy here cause join create a copy already
                 return
 
             if open < n: #an open is only added if open is < n
