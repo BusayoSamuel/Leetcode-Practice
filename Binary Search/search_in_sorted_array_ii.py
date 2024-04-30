@@ -23,7 +23,7 @@ class Solution: #Time complexity O(n), Space complexity O(1)
                 else:
                     l = m + 1
             else:
-                l += 1
+                l += 1 #in the worst case this leads to O(n)
         
         return False
         
