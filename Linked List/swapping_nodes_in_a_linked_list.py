@@ -37,7 +37,7 @@ class Solution: #Perhaps a cleaner version, same complexity
         left = curr
         right = head
 
-        while curr.next:
+        while curr.next: #we know the distance from the first to last would be the same to the distance from right to last
             curr = curr.next
             right = right.next
 
