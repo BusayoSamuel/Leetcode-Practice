@@ -2,7 +2,7 @@
 https://leetcode.com/problems/asteroid-collision/
 """
 
-class Solution:
+class Solution: #Time complexity O(n), Space complexity 0(n)
     def asteroidCollision(self, asteroids: List[int]) -> List[int]:
         stack = []
 
@@ -22,3 +22,25 @@ class Solution:
                 stack.append(a)
 
         return stack
+    
+
+class MySolution: #Same complexity, alternative structure
+    def asteroidCollision(self, asteroids: List[int]) -> List[int]:
+        stack = []
+
+        for a in asteroids:
+
+            while stack and stack[-1] > 0 and a < 0:
+
+                if abs(stack[-1]) <= abs(a):
+                    if abs(a) == abs(stack.pop()):
+                        a = 0
+                        break
+                else:
+                    a = 0
+
+            if a:
+                stack.append(a)
+
+        return stack
+        
