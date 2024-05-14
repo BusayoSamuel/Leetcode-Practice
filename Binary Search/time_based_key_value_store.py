@@ -57,12 +57,34 @@ class TimeMap:
             else:
                 r = m - 1
         return res
+    
+#My other solution
+class TimeMap:
 
+    def __init__(self):
+        self.hashmap = {}
 
+    def set(self, key: str, value: str, timestamp: int) -> None:
+        self.hashmap[key] = self.hashmap.get(key, []) + [[timestamp, value]]
         
 
+    def get(self, key: str, timestamp: int) -> str:
+        if key not in self.hashmap:
+            return ""
+        else:
+            l = 0
+            r = len(self.hashmap[key]) - 1
+            res = [-1, ""]
 
-# Your TimeMap object will be instantiated and called as such:
-# obj = TimeMap()
-# obj.set(key,value,timestamp)
-# param_2 = obj.get(key,timestamp)
+            while l <= r:
+                m = (r + l)//2
+
+                if self.hashmap[key][m][0] > timestamp:
+                    r = m - 1
+                elif self.hashmap[key][m][0] < timestamp:
+                    res = self.hashmap[key][m]
+                    l = m + 1
+                else:
+                    return self.hashmap[key][m][1]
+
+            return res[1]
