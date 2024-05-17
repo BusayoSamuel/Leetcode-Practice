@@ -33,4 +33,4 @@ class AlternativeSolution:
             minLen = backtrack(root - 1, target, curLen, minLen)
             return minLen
 
-        return backtrack(int(math.sqrt(n)), n, 0, math.inf) #we start with largest possible root
+        return backtrack(int(math.sqrt(n)), n, 0, math.inf) #we start with largest possible perfect squ
