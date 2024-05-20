@@ -17,7 +17,25 @@ class Solution: #Time Complexity O(n), Space complexity O(n)
         return answer
 
             
-                
+class MySolution: #same complexity, different format
+    def dailyTemperatures(self, temperatures: List[int]) -> List[int]:
+        res = [0] * len(temperatures)
+        stack = []
+
+        for curidx, curtemp in enumerate(temperatures):
+
+            while stack and stack[-1][0] < curtemp:
+                temp, idx = stack.pop()
+                days = curidx - idx
+                res[idx] = days
+
+            stack.append([curtemp, curidx])
+
+        return res
+
+
+
+                        
 
 
         
