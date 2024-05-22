@@ -145,6 +145,83 @@ class MyLinkedList:
             node.prev.next = node.next
             node.next.prev = node.prev
 
+#My Solution
+
+class Node:
+    def __init__(self, val = 0, next = None, prev = None):
+        self.val = val
+        self.next = next
+        self.prev = prev
+
+
+class MyLinkedList:
+
+    def __init__(self):
+        self.leftdummy = Node(-1)
+        self.rightdummy = Node(-1)
+        self.leftdummy.next = self.rightdummy
+        self.rightdummy.prev = self.leftdummy
+        
+
+    def get(self, index: int) -> int:
+        cur = self.leftdummy.next
+
+        while index and cur != self.rightdummy:
+            index -= 1
+            cur = cur.next
+
+        return cur.val
+        
+
+    def addAtHead(self, val: int) -> None:
+        temp = self.leftdummy.next
+        node = Node(val, temp, self.leftdummy)
+        temp.prev = node
+        self.leftdummy.next = node
+        
+
+    def addAtTail(self, val: int) -> None:
+        temp = self.rightdummy.prev
+        node = Node(val, self.rightdummy, temp)
+        temp.next = node
+        self.rightdummy.prev = node
+        
+    def addAtIndex(self, index: int, val: int) -> None:
+        cur = self.leftdummy.next
+
+        while index and cur != self.rightdummy:
+            index -= 1
+            cur = cur.next
+
+        if not index:
+            node = Node(val, cur, cur.prev)
+            cur.prev.next = node
+            cur.prev = node
+        
+
+    def deleteAtIndex(self, index: int) -> None:
+        cur = self.leftdummy.next
+
+        while index and cur != self.rightdummy:
+            index -= 1
+            cur = cur.next
+
+        if not index and cur != self.rightdummy:
+            temp1 = cur.prev
+            temp2 = cur.next
+
+            temp1.next = temp2
+            temp2.prev = temp1
+        
+
+
+# Your MyLinkedList object will be instantiated and called as such:
+# obj = MyLinkedList()
+# param_1 = obj.get(index)
+# obj.addAtHead(val)
+# obj.addAtTail(val)
+# obj.addAtIndex(index,val)
+# obj.deleteAtIndex(index)
 
 
 
