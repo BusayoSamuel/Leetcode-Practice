@@ -40,3 +40,23 @@ class BetterSolution: #Time complexity O(nlogn), Space complexity O(n)
 
 
         return res
+
+class AnotherSolution:
+    def suggestedProducts(self, products: List[str], searchWord: str) -> List[List[str]]:
+        products.sort()
+        l = 0
+        r = len(products) - 1
+        res = []
+
+        for i in range(len(searchWord)):
+            while l <= r and (len(products[l]) <= i or searchWord[i] != products[l][i]):
+                l += 1
+
+            while l <= r and (len(products[r]) <= i or searchWord[i] != products[r][i]):
+                r -= 1
+
+            res.append(products[l:min(l+3, r + 1)]) #instead of using a for loop
+
+        return res
+
+        
