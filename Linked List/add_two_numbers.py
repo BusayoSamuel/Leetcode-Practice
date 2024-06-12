@@ -28,4 +28,34 @@ class Solution: #Time complexity O(n), Space complexity O(n) where n is the size
 
         return dummy.next
 
+class MyAlternativeSolution: #Same complexity
+    def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
+        dummy = ListNode()
+        res = dummy
+        rem = 0
+        
+        while l1 or l2 or rem:
+            total = rem
+
+            if l1:
+                total += l1.val
+
+            if l2:
+                total += l2.val
+
+            rem = total // 10
+            val = total % 10
+
+            node = ListNode(val)
+
+            res.next = node
+            res = res.next
+
+            if l1:
+                l1 = l1.next
+
+            if l2:
+                l2 = l2.next
+
+        return dummy.next
 
