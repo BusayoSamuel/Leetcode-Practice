@@ -22,4 +22,16 @@ class Solution: #Time complexity O(n), Space complexity O(1)
 
             if slow == slow2:
                 return slow
+
+
+class CleanerSolution: #Time complexity O(n), Space complexity O(1)
+    #Because nums is between 1 and n, we can use num to represent pointers, and every num we visit is changed to its negative, that if we encounter a negative number we know we've visited it before
+    def findDuplicate(self, nums: List[int]) -> int:
+        for i in range(len(nums)):
+            true_idx = abs(nums[i]) 
+            if nums[true_idx] < 0: #we visited it before
+                return true_idx
+            nums[true_idx] = -nums[true_idx] #making it negative means we can still know the true_idx by using abs()
+
+            
         
