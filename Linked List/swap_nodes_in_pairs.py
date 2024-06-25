@@ -29,3 +29,27 @@ class Solution: #Time complexity O(n), Space complexity O(1)
             curr = curr.next
 
         return dummy.next
+
+
+class MySolution: #Same complexity
+    def swapPairs(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        dummy = ListNode(0, head)
+        cur = dummy.next
+        prev = dummy
+
+        while cur and cur.next:
+            nxt = cur.next.next
+            prev.next = cur.next
+            prev.next.next = cur
+            cur.next = nxt
+
+            prev = cur
+            cur = nxt
+
+
+        return dummy.next
+
+
+
+
+        
