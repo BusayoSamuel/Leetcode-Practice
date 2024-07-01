@@ -24,3 +24,24 @@ class Solution: #Time complexity O(n) #Space complexity O(n)
                 stack.append(s[i])
 
         return "".join(stack)
+
+
+class MySolution: #Time complexity O(n), Space complexity O(n)
+    def decodeString(self, s: str) -> str:
+        stack = []
+
+        for c in s:
+            if c == "]":
+                cur = ""
+                while stack[-1] != "[":
+                    cur = stack.pop() + cur
+                stack.pop()
+
+                k = ""
+                while stack and stack[-1].isdigit():
+                    k = stack.pop() + k
+                stack.append(cur * int(k))
+            else:
+                stack.append(c)
+
+        return "".join(stack)
