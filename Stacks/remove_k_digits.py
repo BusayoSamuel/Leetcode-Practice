@@ -64,3 +64,28 @@ class AlternativeStructureSolution: #Time complexity O(n), Space complexity O(n)
         res = "".join(stack)
 
         return res or "0" #if res is empty then it would return zero
+
+
+class MySolution: #Same complexity as above
+    def removeKdigits(self, num: str, k: int) -> str:
+        stack = []
+
+        for c in num:
+            while stack and k and int(c) < int(stack[-1]):
+                stack.pop()
+                k -= 1 
+            
+            stack.append(c)
+            
+            if len(stack) == 1 and c == "0":
+                stack.pop()
+
+        while stack and k:
+            stack.pop()
+            k -= 1
+
+        if not stack:
+            return "0"
+
+        return "".join(stack)
+        
