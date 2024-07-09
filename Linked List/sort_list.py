@@ -81,6 +81,58 @@ class BetterSolution: #MergeSort, Time complexity O(nlogn), Space complexity O(l
 
         return dummy.next
 
+class MySolution: #Same complexity as above
+    def sortList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        def split(node):
+            slow = node
+            fast = node.next 
+
+            while fast and fast.next:
+                slow = slow.next
+                fast = fast.next.next
+
+            l1 = node
+            l2 = slow.next
+            slow.next = None
+
+            return (l1, l2)
+        
+        if not head or not head.next:
+            return head
+
+        l1, l2 = split(head)
+        l1 = self.sortList(l1)
+        l2 = self.sortList(l2)
+
+        dummy = ListNode()
+        cur = dummy
+        while l1 and l2:
+            if l1.val <= l2.val:
+                temp = l1.next
+                cur.next = l1
+                cur = cur.next
+                cur.next = None
+                l1 = temp
+            else:
+                temp = l2.next
+                cur.next = l2
+                cur = cur.next
+                cur.next = None
+                l2 = temp
+
+        if l1:
+            cur.next = l1
+        
+        if l2:
+            cur.next = l2
+
+        return dummy.next
+            
+
+
+
+        
+
 
 
             
