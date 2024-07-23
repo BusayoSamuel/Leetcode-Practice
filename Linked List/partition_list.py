@@ -32,21 +32,31 @@ class Solution: #Time complexity O(n), Space complexity O(1)
 #     def __init__(self, val=0, next=None):
 #         self.val = val
 #         self.next = next
-class AlternativeSolution: #Different structure, same complexity
+class MySolution: #Same complexity
     def partition(self, head: Optional[ListNode], x: int) -> Optional[ListNode]:
-        dummy = ListNode(0, head)
-        cur = dummy
-        res = ListNode()
-        nxt = res
+        lesser = ListNode()
+        greater = ListNode()
 
-        while cur.next:
-            if cur.next.val < x:
-                nxt.next = cur.next
-                nxt = nxt.next
-                cur.next = cur.next.next
+        cur = head
+        prev = lesser
+        nxt = greater
+
+        while cur:
+            if cur.val < x:
+                temp = cur.next
+                prev.next = cur
+                prev = prev.next
+                prev.next = None
             else:
-                cur = cur.next
+                temp = cur.next
+                nxt.next = cur
+                nxt = nxt.next
+                nxt.next = None
 
-        nxt.next = dummy.next
+            cur = temp
 
-        return res.next
+        prev.next = greater.next
+
+        return lesser.next
+
+        
