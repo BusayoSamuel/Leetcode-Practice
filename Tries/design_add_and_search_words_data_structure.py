@@ -43,3 +43,42 @@ class WordDictionary:
 # obj = WordDictionary()
 # obj.addWord(word)
 # param_2 = obj.search(word)
+
+
+class MyTrieNode:
+    def __init__(self):
+        self.children = {}
+        self.word = False
+
+
+class MyWordDictionary:
+
+    def __init__(self):
+        self.root = TrieNode()
+        
+
+    def addWord(self, word: str) -> None:
+        cur = self.root
+
+        for c in word:
+            if c not in cur.children:
+                cur.children[c] = TrieNode()
+            cur = cur.children[c]
+        cur.word = True
+
+    def search(self, word: str) -> bool:
+        def helper(word, cur):
+            for i in range(len(word)):
+                c = word[i]
+                if c != "." and c not in cur.children:
+                    return False
+                elif c == ".":
+                    for child, node in cur.children.items():
+                        if helper(word[i+1:], node):
+                            return True
+                    return False
+                else:
+                    cur = cur.children[c]
+            return cur.word
+
+        return helper(word, self.root)
