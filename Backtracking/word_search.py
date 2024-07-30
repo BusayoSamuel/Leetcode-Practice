@@ -38,3 +38,51 @@ class Solution: #Time complexity O(n*m*4^o), Space complexity O(n*m*4^o) where n
 
         return False
 
+class MySolution: #Same complexity
+    def exist(self, board: List[List[str]], word: str) -> bool:
+
+        m = len(board)
+        n = len(board[0])
+
+        hashset = set()
+
+        def backtrack(i, j, cur):
+            if (i,j) in hashset:
+                return False
+
+            hashset.add((i,j))
+
+            if board[i][j] != word[cur]:
+                hashset.remove((i,j))
+                return False
+
+            if cur == len(word) - 1:
+                return True
+
+            if i + 1 < m:
+                if backtrack(i + 1, j, cur + 1):
+                    return True
+
+            if j + 1 < n:
+                if backtrack(i, j + 1, cur + 1):
+                    return True
+
+            if i - 1 >= 0:
+                if backtrack(i - 1, j, cur + 1):
+                    return True
+
+            if j - 1 >= 0:
+                if backtrack(i, j - 1, cur + 1):
+                    return True
+
+            hashset.remove((i,j))
+            return False
+
+
+        for i in range(m):
+            for j in range(n):
+                if backtrack(i, j, 0):
+                    return True
+
+        return False
+        
