@@ -35,3 +35,36 @@ class Solution: #Time complexity O(n), Space complexity O(1)
         curr.next = None
 
         return newhead
+
+
+class MySolution: #Same complexity
+    def rotateRight(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
+        cur = head
+        count = 0
+
+        while cur:
+            count += 1
+            cur = cur.next
+
+        if not count:
+            return head
+
+        k %= count
+
+        if not k:
+            return head
+
+        left = head
+        right = head
+        for _ in range(k):
+            right = right.next
+
+        while right.next:
+            left = left.next
+            right = right.next
+
+        res = left.next
+        left.next = None
+        right.next = head
+
+        return res
