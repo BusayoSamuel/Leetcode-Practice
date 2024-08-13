@@ -74,3 +74,40 @@ class Solution: #Cleaner solution, same complexity
         tail.next = cur
 
         return dummy.next
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class MyOtherSolution: #Same complexity
+    def reverseBetween(self, head: Optional[ListNode], left: int, right: int) -> Optional[ListNode]:
+        count = right - left + 1
+        dummy = ListNode(0, head)
+        leftN = dummy
+        rightN = dummy
+
+        while count:
+            rightN = rightN.next
+            count -= 1
+
+        while left - 1:
+            rightN = rightN.next
+            leftN = leftN.next
+            left -= 1
+
+        front = leftN
+        back = rightN.next
+        leftN = leftN.next
+
+        front.next = rightN
+        nxt = back
+        cur = leftN
+
+        while cur != back:
+            prev = cur.next
+            cur.next = nxt
+            nxt = cur
+            cur = prev
+
+        return dummy.next
