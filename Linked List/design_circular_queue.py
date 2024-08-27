@@ -130,4 +130,63 @@ class MyCircularQueue:
     def isFull(self) -> bool:
         return self.capacity == self.size
 
+#Alternativelyyy
 
+class Node:
+    def __init__(self, val = None, nxt = None):
+        self.val = val
+        self.next = nxt
+
+
+class MyCircularQueue:
+
+    def __init__(self, k: int):
+        self.front = self.tail = Node()
+        cur = self.front
+        
+        for _ in range(k-1):
+            cur.next = Node()
+            cur = cur.next
+
+        cur.next = self.front
+
+    def enQueue(self, value: int) -> bool:
+        if not self.isFull():
+            if self.isEmpty():
+                self.tail.val = value
+            else:
+                self.tail = self.tail.next
+                self.tail.val = value
+            return True
+        else:
+            return False       
+
+    def deQueue(self) -> bool:
+        if not self.isEmpty():
+            self.front.val = None
+            if self.front != self.tail:
+                self.front = self.front.next
+            return True
+        else:
+            return False    
+
+    def Front(self) -> int:
+        if self.isEmpty():
+            return -1
+        else:
+            return self.front.val
+        
+
+    def Rear(self) -> int:
+        if self.isEmpty():
+            return -1
+        else:
+            return self.tail.val
+
+    def isEmpty(self) -> bool:
+        return self.front == self.tail and self.tail.val == None
+
+
+    def isFull(self) -> bool:
+        return self.front == self.tail.next and self.front.val != None
+        
