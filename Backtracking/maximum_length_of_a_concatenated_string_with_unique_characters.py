@@ -45,5 +45,98 @@ class BetterSolution: #Time complexity O(2^n), Space complexity O(2^n) not n^2 b
                     maximum = max(maximum,len(x))
 
         return maximum
+
+
+class AlternativeSolution: #Same complexity
+    def maxLength(self, arr: List[str]) -> int:
+        charSet = set()
+
+        def overlap(charSet, s):
+            c = Counter(charSet) + Counter(s)
+            return max(c.values()) > 1
+            # prev = set()
+            # for c in s:
+            #     if c in charSet or c in prev:
+            #         return True
+            #     prev.add(c)
+            # return False
+
+        def backtrack(i):
+            if i == len(arr):
+                return len(charSet)
+            res = 0
+            if not overlap(charSet, arr[i]):
+                for c in arr[i]:
+                    charSet.add(c)
+                res = backtrack(i + 1)
+                for c in arr[i]:
+                    charSet.remove(c)
+            return max(res, backtrack(i + 1))  # dont concatenate arr[i]
+
+        return backtrack(0)
+
+
+class AlternativeSolution: #Same complexity
+    def maxLength(self, arr: List[str]) -> int:
+        charSet = set()
+
+        def overlap(charSet, s):
+            c = Counter(charSet) + Counter(s)
+            return max(c.values()) > 1
+            # prev = set()
+            # for c in s:
+            #     if c in charSet or c in prev:
+            #         return True
+            #     prev.add(c)
+            # return False
+
+        def backtrack(i):
+            if i == len(arr):
+                return len(charSet)
+            res = 0
+            if not overlap(charSet, arr[i]):
+                for c in arr[i]:
+                    charSet.add(c)
+                res = backtrack(i + 1)
+                for c in arr[i]:
+                    charSet.remove(c)
+            return max(res, backtrack(i + 1))  # dont concatenate arr[i]
+
+        return backtrack(0)
+
+
+class MyOtherSolution: #Same complexity
+    def maxLength(self, arr: List[str]) -> int:
+        res = 0
+
+        def backtrack(i, unique):
+            nonlocal res
+            res = max(res, len(unique))
+
+            if i >= len(arr):
+                return
+
+            for j in range(i, len(arr)):
+                if len(arr[j]) > len(set([*arr[j]])):
+                    continue
+
+                for k in range(len(arr[j])):
+                    if arr[j][k] in unique:
+                        break
+                    
+                    if k == len(arr[j]) - 1:
+                        unique.update([*arr[j]])
+                        backtrack(j+1, unique)
+                        unique -= set([*arr[j]])
+
+        backtrack(0, set([]))
+        return res
+                
+
+            
+
+            
+        
+
 		
         
