@@ -67,6 +67,41 @@ class Solution: #Same complexity, cleaner code
             cur = prev.next
 
         return dummy.next
+
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class MyOtherSolution: #Same complexity
+    def insertionSortList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        dummy = ListNode(-math.inf, head)
+        sort = dummy.next
+        unsort = sort.next
+
+        while sort and sort.next:
+            if sort.val <= sort.next.val:
+                sort = sort.next
+                continue
+
+            cur = dummy
+
+            temp = sort.next
+            sort.next = sort.next.next
+
+            while cur != sort and cur.val <= cur.next.val <= temp.val:
+                cur = cur.next
+
+
+            nxt = cur.next
+            cur.next = temp
+            cur.next.next = nxt            
+
+        return dummy.next
+
+
+
         
 
 
