@@ -75,3 +75,46 @@ class CleanerSolution:
                 curr.next, curr = None, curr.next #to define the tail of a part and simultaneously move to the next part 
 
         return res
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class MyOtherSolution: #Cleaner version of my first solution
+    def splitListToParts(self, head: Optional[ListNode], k: int) -> List[Optional[ListNode]]:
+        counts = [0 for i in range(k)]
+
+        i = 0
+        cur = head
+
+        while cur:
+            counts[i] += 1
+            i += 1
+            if i == len(counts):
+                i = 0
+            cur = cur.next
+
+        start = head
+        end = head
+        res = [None for i in range(k)]
+        i = 0
+
+        while end:
+            while counts[i] - 1:
+                end = end.next
+                counts[i] -= 1
+            temp = end.next
+            end.next = None
+            res[i] = start
+            start = temp
+            end = temp
+            i += 1
+
+        return res
+
+        
+
+
+
+        
