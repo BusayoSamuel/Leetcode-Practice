@@ -38,3 +38,21 @@ class OptimalSolution: #Time complexity 0(n), Space complexity O(1)
         oneStartCount = len(s) - zeroStartCount #counts for strings starting with one + counts for strings starting with zero = length of s
 
         return min(zeroStartCount, oneStartCount)
+
+
+class MyOtherSolution: #Same complexity
+    def minOperations(self, s: str) -> int:
+        start1 = "0"
+        start0 = "1"
+        count0 = 0
+        count1 = 0
+
+        for c in s:
+            if c == start1:
+                count0 += 1
+            else:
+                count1 += 1
+
+            start0, start1 = start1, start0
+
+        return min(count0, count1)
