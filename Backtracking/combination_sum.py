@@ -44,4 +44,26 @@ class Solution:
 
         dfs(0, [], 0)
         return res
-    
+
+class MyOtherSolution: #Same complexity as above
+    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+        res = []
+        cur = []
+
+        def dfs(i, curTotal):
+            if i >= len(candidates) or curTotal > target:
+                return
+
+            if curTotal == target:
+                res.append(cur.copy())
+                return
+
+            for j in range(i, len(candidates)):
+                cur.append(candidates[j])
+                dfs(j, curTotal + candidates[j])
+                cur.pop()
+
+        dfs(0, 0)
+        return res
+
+
