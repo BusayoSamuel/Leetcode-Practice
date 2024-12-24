@@ -2,7 +2,6 @@
 https://leetcode.com/problems/combinations/description/
 """
 
-
 class MySolution: #Time complexity O(n*2^k) because branching is 2^k and this is done for all n values, Space complexity O(2^k) as 2^k is the maximum number of possible combinations
     def combine(self, n: int, k: int) -> List[List[int]]:
         nums = [i for i in range(1, n+1)]
@@ -42,5 +41,28 @@ class AnotherSolution:
                 comb.pop()
         helper(1, [])
         return res
+
+class Solution: #Time complexity O(nCk), Space complexity O(k)
+    def combine(self, n: int, k: int) -> List[List[int]]:
+        res = []
+        cur = []
+
+        def dfs(i):
+            if len(cur) == k:
+                res.append(cur.copy())
+                return
+
+            if i > n or len(cur) > k:
+                return
+
+            cur.append(i)
+            dfs(i+1)
+            cur.pop()
+            dfs(i+1)
+
+        dfs(1)
+        return res
+
+        
 
         
