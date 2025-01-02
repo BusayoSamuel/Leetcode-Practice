@@ -2,7 +2,7 @@
 https://leetcode.com/problems/combination-sum-ii/description/
 """
 
-class MySolution: #Time complexity O(2^n), Space complexity O(2^n)
+class MySolution: #Time complexity O(2^n), Space complexity O(n)
     def combinationSum2(self, candidates: List[int], target: int) -> List[List[int]]:
         res = []
         candidates.sort()
@@ -53,3 +53,27 @@ class OtherSolution:
 
         backtrack([], 0, target)
         return res
+
+class MyOtherSolution: #Same complexity
+    def combinationSum2(self, candidates: List[int], target: int) -> List[List[int]]:
+        cur = []
+        res = []
+        candidates.sort()
+
+        def dfs(i, curSum):
+            if curSum == target:
+                res.append(cur.copy())
+
+            if i >= len(candidates) or curSum > target:
+                return
+
+            for j in range(i, len(candidates)):
+                if j == i or candidates[j] != candidates[j - 1]:
+                    cur.append(candidates[j])
+                    dfs(j+1, curSum + candidates[j])
+                    cur.pop()
+
+        dfs(0, 0)
+        return res
+
+        
