@@ -40,3 +40,28 @@ class Solution:
             res.extend(perms)
             nums.append(n)
         return res
+
+
+class MyOtherSolution: #Same complexity
+    def permute(self, nums: List[int]) -> List[List[int]]:
+        res = []
+        cur = []
+        picked = set()
+
+
+        def dfs():
+            if len(nums) == len(picked):
+                res.append(cur.copy())
+                return
+
+            for i in range(len(nums)):
+                if nums[i] not in picked:
+                    cur.append(nums[i])
+                    picked.add(nums[i])
+                    dfs()
+                    cur.pop()
+                    picked.remove(nums[i])
+
+        dfs() 
+        return res
+        
