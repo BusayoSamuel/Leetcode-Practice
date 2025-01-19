@@ -34,3 +34,29 @@ class AlternativeSolution: #Cleaner Version
             curSum -= arr[L]
 
         return res
+
+class MySolution:
+    def numOfSubarrays(self, arr: List[int], k: int, threshold: int) -> int:
+        threshold *= k
+        curr = 0
+        l = 0
+        r = -1 #protects against the edge case of k == 1
+        res = 0
+
+        for r in range(k-1): #if k == 1 this wouldn't run
+            curr += arr[r]
+
+        while r + 1 < len(arr):
+            r += 1
+            curr += arr[r]
+                
+            if curr >= threshold:
+                res += 1
+
+            curr -= arr[l]
+            l += 1  
+            
+        return res
+
+
+        
