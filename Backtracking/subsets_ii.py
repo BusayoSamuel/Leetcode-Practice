@@ -2,9 +2,9 @@
 https://leetcode.com/problems/subsets-ii/description/
 """
 
-class Solution: #Time complexity O(n*2^n), Space complexity O(n*2^n)
+class Solution: #Time complexity O(nlogn + 2^n) due to sorting and backtracking, Space complexity O(n + 2^n) due to cur storing all nums and res storing all possible subsets
     def subsetsWithDup(self, nums: List[int]) -> List[List[int]]:
-        nums.sort()
+        nums.sort() #must be sorted to cut out any duplicates
         res = []
         curSet = []
 
@@ -17,7 +17,7 @@ class Solution: #Time complexity O(n*2^n), Space complexity O(n*2^n)
             backtrack(i + 1)
             last = curSet.pop() #we reference the last item that was added to avoid duplicates
 
-            while i + 1 < len(nums) and last == nums[i+1]:
+            while i + 1 < len(nums) and last == nums[i+1]: #or use nums[i] instead of last
                 i += 1
 
             backtrack(i + 1)
