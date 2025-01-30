@@ -96,4 +96,39 @@ class MySolution: #Similar to the one above
 
         sum(0, [], 4, 0)
         return res
-            
+
+class MyOtherSolution: #Same complexity as the general solution
+    def fourSum(self, nums: List[int], target: int) -> List[List[int]]:
+        n = 4
+        nums.sort()
+        res = []
+
+        def nSum(n, i, target, cur):
+            for j in range(i, len(nums)):
+                if j > i and nums[j] == nums[j - 1]:
+                    continue
+
+                if n >= 3:
+                    nSum(n - 1, j + 1, target - nums[j], cur + [nums[j]])
+                else:
+                    l = j
+                    r = len(nums) - 1
+
+                    while l < r:
+                        total = nums[l] + nums[r]
+
+                        if total > target:
+                            r -= 1
+                        elif total < target:
+                            l += 1
+                        else:
+                            res.append(cur + [nums[l], nums[r]])
+
+                            l += 1
+                            while l < r and nums[l] == nums[l - 1]:
+                                l += 1
+
+                    break
+
+        nSum(4, 0, target, [])
+        return res
