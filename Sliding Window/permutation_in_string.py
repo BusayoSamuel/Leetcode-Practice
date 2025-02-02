@@ -49,3 +49,25 @@ class Solution2: #Alternative structure
             l += 1    
 
         return min(hashmap.values()) == max(hashmap.values()) == 0
+
+
+class MySolution: #Same complexity as above
+    def checkInclusion(self, s1: str, s2: str) -> bool:
+        s1count = Counter(s1)
+
+        l = 0
+
+        for r in range(len(s2)):
+            while r - l + 1 > len(s1):
+                if s2[l] in s1count:
+                    s1count[s2[l]] += 1
+                l += 1
+
+            if s2[r] in s1count:
+                s1count[s2[r]] -= 1
+
+            if min(s1count.values()) == 0 and max(s1count.values()) == 0:
+                return True
+
+        return False
+        
