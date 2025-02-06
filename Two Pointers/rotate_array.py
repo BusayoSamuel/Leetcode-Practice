@@ -34,3 +34,16 @@ class Solution2: #Time complexity O(n), Space complexity O(1)
         reverse(0, k - 1) #Reverse the first half
         reverse(k, len(nums) - 1) #Reverse the second half
 
+class MuSolution: #Time complexity O(nk), Space complexity O(1)
+    def rotate(self, nums: List[int], k: int) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+
+        for _ in range(k % len(nums)):
+            prev = nums[-1]
+            for cur in range(len(nums)):
+                temp = nums[cur]
+                nums[cur] = prev
+                prev = temp
+
