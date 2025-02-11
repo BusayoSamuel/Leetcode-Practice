@@ -85,4 +85,36 @@ class MySolution: #Same complexity
                     return True
 
         return False
+
+
+class MySolution: #Same complexity as above
+    def exist(self, board: List[List[str]], word: str) -> bool:
+        visit = set()
+        ROWS = len(board)
+        COLS = len(board[0])
+        def dfs(i, y, x):
+            if min(x,y) < 0 or x >= COLS or y >= ROWS or board[y][x] != word[i] or (y, x) in visit:
+                return False
+                
+            if i == len(word) - 1:
+                return True
+            
+            visit.add((y,x))
+            i += 1
+            left = dfs(i, y, x-1)
+            right = dfs(i, y, x+1)
+            up = dfs(i, y-1, x)
+            down = dfs(i, y+1, x)
+
+            visit.remove((y,x))
+            
+            return up or down or right or left
+        
+        for i in range(ROWS):
+            for j in range(COLS):
+                if board[i][j] == word[0] and (i,j) not in visit:
+                    if dfs(0, i, j):
+                        return True
+                    visit = set()
+        return False
         
