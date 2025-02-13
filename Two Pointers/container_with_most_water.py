@@ -23,4 +23,24 @@ class Solution: #Time complexity O(n), Space complexity O(1)
 
         return maxA
 
+
+class MySolution: #Same complexity as above
+    def maxArea(self, height: List[int]) -> int:
+        l = 0
+        r = len(height) - 1
+        res = 0
+
+        while l < r:
+            breadth = min(height[l], height[r])
+            length = r - l
+            area = breadth * length
+            res = max(res, area)
+
+            if height[r] > height[l]:
+                l += 1
+            else:
+                r -= 1
+        
+        return res
+
         
