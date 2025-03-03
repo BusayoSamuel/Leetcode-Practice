@@ -2,7 +2,7 @@
 https://leetcode.com/problems/binary-tree-inorder-traversal/description/
 """
 
-class RecursiveSolution:
+class RecursiveSolution: #Time complexity O(n), Space complexity O(n)
     def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
         res = [] #behaves as a global variable to the inorder function
 
@@ -17,7 +17,7 @@ class RecursiveSolution:
         inorder(root)
         return 
     
-class IterativeSolution:
+class IterativeSolution: #Time complexity O(n), Space complexity O(n)
     def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
         res = []
         stack = []
