@@ -117,4 +117,39 @@ class MySolution: #Same complexity as above
                         return True
                     visit = set()
         return False
+
+
+class Solution: #Cleaner Solution, avoids the need for a visited set
+    def exist(self, board: List[List[str]], word: str) -> bool:
+        ROWS, COLS = len(board), len(board[0])
+
+        def search(i, j, index):
+            if index == len(word):
+                return True  # Successfully matched the entire word
+            
+            if i < 0 or i >= ROWS or j < 0 or j >= COLS or board[i][j] != word[index]:
+                return False  # Out of bounds or mismatch
+
+            # Temporarily mark the cell as visited
+            temp, board[i][j] = board[i][j], '#'
+
+            # Explore all 4 directions
+            found = (search(i, j - 1, index + 1) or  # Left
+                     search(i, j + 1, index + 1) or  # Right
+                     search(i - 1, j, index + 1) or  # Up
+                     search(i + 1, j, index + 1))    # Down
+
+            # Restore the cell after backtracking
+            board[i][j] = temp
+
+            return found
+
+        # Start the DFS search from each cell that matches the first letter
+        for i in range(ROWS):
+            for j in range(COLS):
+                if board[i][j] == word[0] and search(i, j, 0):
+                    return True
+
+        return False
+
         
