@@ -23,3 +23,11 @@ class Solution: #O(n) time complexity, #O(n) space complexity
         preorder(root)
 
         return res
+
+class Solution: #Same complexity as above
+    def preorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+
+        if not root:
+            return []
+
+        return [root.val] + self.preorderTraversal(root.left) + self.preorderTraversal(root.right)
