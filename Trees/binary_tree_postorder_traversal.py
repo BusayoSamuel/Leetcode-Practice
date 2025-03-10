@@ -22,3 +22,11 @@ class Solution: #O(n) time complexity, #O(n) space complexity
 
         postorder(root)
         return res
+
+class MySolution: #Same complexity as above
+    def postorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+        if not root:
+            return []
+
+        return self.postorderTraversal(root.left) + self.postorderTraversal(root.right) + [root.val]
+        
