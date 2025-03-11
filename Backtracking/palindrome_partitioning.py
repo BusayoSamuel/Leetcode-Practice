@@ -43,7 +43,7 @@ class CleanerSolution: #Same complexity
             if i >= len(s):
                 res.append(part.copy())
                 return
-            for j in range(i, len(s)):
+            for j in range(i, len(s)): #always start from i and pass j + 1 as the pointer
                 if self.isPali(s, i, j):
                     part.append(s[i : j + 1])
                     dfs(j + 1)
@@ -58,3 +58,8 @@ class CleanerSolution: #Same complexity
                 return False
             l, r = l + 1, r - 1
         return True
+
+
+
+
+
