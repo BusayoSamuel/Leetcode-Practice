@@ -48,5 +48,39 @@ class OtherSolution: #Same complexity
                   
         backtrack(0, 0, "")
         return res
+
+
+class MyOtherSolution: #Same complexity as above
+    def restoreIpAddresses(self, s: str) -> List[str]:
+        res = []
+        cur = []
+
+        def dfs(i):
+            if i >= len(s):
+                if len(cur) != 4:
+                    return
+
+                valid = ".".join(cur)
+                res.append(valid)
+                return
+
+            if len(cur) == 4:
+                return
+
+
+            for j in range(i, len(s)):
+                if j > i and s[i] == '0':
+                    return
+
+                val = s[i:j+1]
+                if 0 <= int(val) <= 255:
+                    cur.append(val)
+                    dfs(j+1)
+                    cur.pop()
+
+
+
+        dfs(0)
+        return res
         
         
