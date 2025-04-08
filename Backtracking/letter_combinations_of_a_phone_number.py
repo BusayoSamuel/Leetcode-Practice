@@ -2,7 +2,11 @@
 https://leetcode.com/problems/letter-combinations-of-a-phone-number/description/
 """
 
-class MySolution: #Time complexity O(4^n), Space complexity O(4^n)
+class MySolution: 
+    """
+    Time complexity O(n * 4^n) = O(4^n)  because for each letter you have 4 choices so 4^n and then each combination is joined before append to to the res list so n 
+    Space complexity O(n * 4^n) = O(4^n) as 4^n is the total number of combinations and each combination is a length n
+    """
     def letterCombinations(self, digits: str) -> List[str]:
         hashmap = {
             "2" : ["a", "b", "c"],
