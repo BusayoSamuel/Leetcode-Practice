@@ -21,3 +21,18 @@ class Solution: #O(n) time complexity, #O(n) space complexity
         self.invertTree(root.right)
 
         return root 
+
+class MySolution: #Same complexity as above
+    def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+        def dfs(node):
+            if not node:
+                return None
+
+            tmp = node.left
+            node.left = node.right
+            node.right = tmp
+            dfs(node.left)
+            dfs(node.right)
+
+        dfs(root)
+        return root
