@@ -10,7 +10,7 @@ class Solution:
         l, r = 0, len(people) - 1
 
         while l <= r:
-            rem = limit - people[r]
+            rem = limit - people[r] #people[r] is guaranteed to be less than limit, so need to worry about negative rem
             boats += 1 #becuase people[r] is always less than limit so we know a boat would at least one item
             r -= 1
             if l <= r and rem >= people[l]: # "l<=r" ensures that an index isn't counted twice, "r-=1" would move the right pointer past the left pointer in this case
