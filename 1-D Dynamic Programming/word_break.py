@@ -27,10 +27,10 @@ class Solution: #Time complexity O(n^2), Space complexity O(1)
 class Solution: #Time complexity O(n*m*k), Space complexity O(1) where n is the length of s, m is the number of words, and k is the length of the longest word
     def wordBreak(self, s: str, wordDict: List[str]) -> bool:
         dp = [False] * (len(s) + 1)
-        dp[len(s)] = 1
+        dp[len(s)] = True
 
         for i in range(len(s)-1,-1,-1):
-            for word in wordDict:
+            for word in wordDict: #compare each word in the dictionary 
                 if (i + len(word) <= len(s)) and s[i:i+len(word)] == word:
                     dp[i] = dp[i+len(word)]
                 if dp[i]:
