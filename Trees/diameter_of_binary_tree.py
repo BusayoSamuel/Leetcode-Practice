@@ -8,7 +8,7 @@ https://leetcode.com/problems/diameter-of-binary-tree/description/
 #         self.val = val
 #         self.left = left
 #         self.right = right
-class Solution:
+class Solution: #Time complexity O(n), Space complexity O(n)
     def diameterOfBinaryTree(self, root: Optional[TreeNode]) -> int:
         res = 0
 
@@ -28,3 +28,25 @@ class Solution:
 
         dfs(root)
         return res
+
+
+class MySolution: #Same complexity as above
+    def diameterOfBinaryTree(self, root: Optional[TreeNode]) -> int:
+        res = 0
+
+        def dfs(node):
+            nonlocal res
+
+            if not node:
+                return -1
+
+            left = dfs(node.left)
+            right = dfs(node.right)
+
+            res = max(res, 2 + left + right)
+
+            return 1 + max(left, right)
+
+        dfs(root)
+        return res
+        
