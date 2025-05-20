@@ -2,7 +2,7 @@
 https://leetcode.com/problems/splitting-a-string-into-descending-consecutive-values/description/
 """
 
-class MySolution: #Time complexity O(2^n), Space complexity O(n)
+class MySolution: #Time complexity O(n^n), Space complexity O(n)
     def splitString(self, s: str) -> bool:
         curSeq = []
         
@@ -43,3 +43,26 @@ class OtherSolution: #Same complexity as above
             if dfs(i+1, val): return True
                 
         return False
+
+class MyOtherSolution: #Same complexity as above
+    def splitString(self, s: str) -> bool:
+        def dfs(i, target):
+            if i >= len(s):
+                return True
+
+            for j in range(i, len(s)):
+                cur = int(s[i:j+1])
+                print(cur)
+
+                if j == len(s)-1 and target == None:
+                    return False
+
+                if cur == target or target == None:
+                    if dfs(j+1, cur - 1):
+                        return True
+
+            return False
+
+        return dfs(0, None)
+
+        
