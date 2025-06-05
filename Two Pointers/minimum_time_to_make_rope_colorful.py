@@ -18,3 +18,24 @@ class MySolution: #Time complexity O(n), Space complexity O(n)
                 stack.append([c, neededTime[i]])
 
         return res
+
+class MyOtherSolution: #Same complexity as above
+    def minCost(self, colors: str, neededTime: List[int]) -> int:
+        l = 0
+        res = 0
+        stack = [(colors[0], neededTime[0])]
+
+        for r in range(1, len(colors)):
+            color, time = stack[-1]
+            if colors[r] == color:
+                if neededTime[r] >= time:
+                    res += time
+                    stack.pop()
+                    stack.append((colors[r], neededTime[r]))
+                else:
+                    res += neededTime[r]
+            else:
+                stack.append((colors[r], neededTime[r]))
+
+        return res
+
