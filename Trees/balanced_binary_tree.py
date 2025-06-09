@@ -21,3 +21,20 @@ class Solution: #Time complexity O(n), Space complexity O(n)
             return [bal, max(left[1], right[1]) + 1] #returning [if node is balanced, height of node]
 
         return dfs(root)[0]
+
+class MySolution: #Same complexity as above
+    def isBalanced(self, root: Optional[TreeNode]) -> bool:
+        def dfs(node: TreeNode ):
+            if not node:
+                return [True, 0]
+
+            leftBalanced, leftHeight = dfs(node.left)
+            rightBalanced, rightHeight = dfs(node.right)
+
+            if leftBalanced and rightBalanced:
+                return [abs(leftHeight-rightHeight) <= 1, 1 + max(leftHeight, rightHeight) ]
+            else:
+                return [False, 1 + max(leftHeight, rightHeight)]
+
+
+        return dfs(root)[0]
