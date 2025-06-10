@@ -49,4 +49,39 @@ class OtherSolution:
             if res: return res
             
         return backtrack(0, ["0" for s in nums])
+
+
+class MyOtherSolution: #Same complexity as above
+    def findDifferentBinaryString(self, nums: List[str]) -> str:
+        hashset = set(nums)
+        cur = []
+        n = len(nums)
+
+        def dfs(n):
+            if len(cur) == n:
+                print(cur)
+                num = "".join(cur)
+                if num not in hashset:
+                    return num
+                else:
+                    return False
+
+            cur.append('0')
+            res = dfs(n)
+            if res:
+                return res
+
+            cur.pop()
+            cur.append('1')
+            res = dfs(n)
+            if res:
+                return res
+            cur.pop()
+
+
+        return dfs(n)
+
+            
+
+        
         
