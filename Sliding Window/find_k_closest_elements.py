@@ -54,7 +54,23 @@ class SlightlyBetterSolution: #Time complexity O(log(n-k)), Space complexity O(1
             if x - arr[m] > arr[m+k] - x: #access if the lefmost value in curr window is less close to value immediately right of window 
                 l = m + 1 #therefore the values to left would never be closer
             else:
-                r = m therefore values to right wouldn't be closer
+                r = m #therefore values to right wouldn't be closer
 
         return arr[l:l+k]
+
+
+class MySolution: #Time complexity O(n-k), Space complexity O(1)
+    def findClosestElements(self, arr: List[int], k: int, x: int) -> List[int]:
+        l = 0
+        r = len(arr) - 1
+
+        while l <= r and r - l + 1 > k:
+            if abs(arr[r] - x) > abs(arr[l] - x):
+                r -= 1
+            elif abs(arr[r] - x) < abs(arr[l] - x):
+                l += 1
+            else:
+                r -= 1
+
+        return arr[l:r+1]
         
