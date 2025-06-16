@@ -23,7 +23,7 @@ class Solution1: #Time complexity O(p + q), Space complexity O(p + q)
         return self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
     
 
-class Solution2: #Same complexity
+class Solution2: #Same complexity as above
     def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
         def dfs(p, q):
             if not p and not q:
@@ -37,4 +37,21 @@ class Solution2: #Same complexity
                 return False
 
         return dfs(p,q)
+
+
+class MySolution: #Same complexity as above
+    def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
+        def dfs(p, q):
+            if not p and not q:
+                return True
+            if not p or not q:
+                return False
+
+            if p.val == q.val and dfs(p.left, q.left) and dfs(p.right, q.right):
+                return True
+            else:
+                return False
+
+
+        return dfs(p, q)
         
