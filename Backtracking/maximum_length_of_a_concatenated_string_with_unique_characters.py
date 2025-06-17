@@ -131,6 +131,35 @@ class MyOtherSolution: #Same complexity
 
         backtrack(0, set([]))
         return res
+
+
+class MyOtherSolution:
+    def maxLength(self, arr: List[str]) -> int:
+        cur = []
+        res = 0
+
+        def dfs(i):
+            nonlocal res
+
+            s = "".join(cur)
+            if len(s) > len(set(s)):
+                return
+
+            res = max(res, len(s))
+
+            if i >= len(arr):
+                return
+
+            for j in range(i, len(arr)):
+                cur.append(arr[j])
+                dfs(j+1)
+                cur.pop()
+            
+        dfs(0)
+        return res
+
+
+        
                 
 
             
