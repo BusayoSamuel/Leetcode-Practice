@@ -2,7 +2,7 @@
 https://leetcode.com/problems/bag-of-tokens/submissions/1494864761/
 """
 
-class MySolution: #Time complexity O(n), Space complexity O(n) due to sorting
+class MySolution: #Time complexity O(nlogn), Space complexity O(n) due to sorting
     def bagOfTokensScore(self, tokens: List[int], power: int) -> int:
         tokens.sort()
         l = 0
