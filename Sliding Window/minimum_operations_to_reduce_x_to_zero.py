@@ -49,3 +49,24 @@ class InefficientSolution: #Time complexiy O(n^2), Space complexity O(n)
                     res = min(res, -j + len(nums))
 
         return res if res != len(nums) + 1 else -1
+
+class MySolution:  #Time complexity O(n), Space complexity O(1)
+    def minOperations(self, nums: List[int], x: int) -> int:
+        total = sum(nums)
+        target = total - x
+        res = len(nums) + 1
+
+        l = 0
+        cur = 0
+
+        for r in range(len(nums)):
+            cur += nums[r]
+
+            while r >= l and cur > target:
+                cur -= nums[l]
+                l += 1
+
+            if cur == target:
+                res = min(res, len(nums)-(r-l+1))
+
+        return res if res != len(nums) + 1 else -1
