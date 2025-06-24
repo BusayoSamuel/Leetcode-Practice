@@ -2,45 +2,58 @@
 https://leetcode.com/problems/partition-to-k-equal-sum-subsets/description/
 """
 
-class Solution(object):
-    def canPartitionKSubsets(self, nums, k):
-        """
-        :type nums: List[int]
-        :type k: int
-        :rtype: bool
-        """
-
+class Solution: #Time complexity O(k*2^n), Space complexity O(n)
+    def canPartitionKSubsets(self, nums: List[int], k: int) -> bool:
         if sum(nums) % k != 0:
             return False
 
-        nums.sort(reverse = True)
-        target = sum(nums) / k
-        visited= set()
+        nums.sort(reverse=True)
+        target = sum(nums) // k
+        used = [False] * len(nums)
 
-        def backtrack(idx, count, currSum):
-            if count == k:
+        def backtrack(i, k, subsetSum):
+            if k == 0:
+                return True
+            if subsetSum == target:
+                return backtrack(0, k - 1, 0)
+            for j in range(i, len(nums)):
+                if used[j] or subsetSum + nums[j] > target:
+                    continue
+                used[j] = True
+                if backtrack(j + 1, k, subsetSum + nums[j]):
+                    return True
+                used[j] = False
+            return False
+
+        return backtrack(0, k, 0)
+
+
+class MySolution: #Time complexity O(k^n), Space complexity O(n), Not as efficient as above
+    def canPartitionKSubsets(self, nums: List[int], k: int) -> bool:
+        if sum(nums) % k != 0:
+            return False
+
+        target = sum(nums) // k
+        res = [0 for i in range(k)]
+
+        def dfs(i):
+            if i >= len(nums):
                 return True
 
-            if target == currSum:
-                return backtrack(0, count + 1, 0)
+            if nums[i] > target:
+                return False
 
-            for i in range(idx, len(nums)):
+            for j in range(len(res)):
+                if res[j] + nums[i] > target:
+                    continue
                 
-                # skip duplicates if last same number was skipped
-                if i > 0 and (i - 1) not in visited and nums[i] == nums[i - 1]:
-                    continue
-
-                if i in visited or currSum + nums[i] > target:
-                    continue
-
-                visited.add(i)
-
-                if backtrack(i + 1, count, currSum + nums[i]):
+                res[j] += nums[i]
+                if dfs(i + 1):
                     return True
-                
-                visited.remove(i)
+                res[j] -= nums[i]
 
             return False
 
+        return dfs(0)
 
-        return backtrack(0, 0, 0)
+
