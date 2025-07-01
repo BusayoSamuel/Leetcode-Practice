@@ -55,6 +55,38 @@ class CleanerSolution: #Time complexity O(n*2^n), Space complexity O(n)
         backtrack(0)
         return res
 
+
+class Solution:
+    def beautifulSubsets(self, nums: List[int], k: int) -> int:
+        nums.sort()
+        cur = []
+        res = 0
+
+        def backtrack(i):
+            nonlocal res 
+
+            if i >= len(nums):
+                for num in set(cur):
+                    if num + k in cur or num - k in cur:
+                        return
+
+                if cur:
+                    res += 1
+                return
+
+            cur.append(nums[i])
+            backtrack(i+1)
+            cur.pop()
+            backtrack(i+1)
+
+
+        backtrack(0)
+        return res
+            
+
+                
+        
+
                     
                         
 
