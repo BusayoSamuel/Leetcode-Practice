@@ -56,7 +56,7 @@ class CleanerSolution: #Time complexity O(n*2^n), Space complexity O(n)
         return res
 
 
-class Solution:
+class MySolution: #Time complexity O(n*2^n), Space complexity O(n)
     def beautifulSubsets(self, nums: List[int], k: int) -> int:
         nums.sort()
         cur = []
