@@ -2,7 +2,7 @@
 https://leetcode.com/problems/binary-subarrays-with-sum/description/
 """
 
-class Solution:
+class Solution: #Time complexity O(n), Space complexity O(1)
     def numSubarraysWithSum(self, nums: List[int], goal: int) -> int:
         def slide(x):
             if x < 0:
