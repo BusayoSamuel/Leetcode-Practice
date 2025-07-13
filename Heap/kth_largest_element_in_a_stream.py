@@ -65,10 +65,6 @@ class MyKthLargest:
 
         return self.heap.heap[1]
 
-# Your KthLargest object will be instantiated and called as such:
-# obj = KthLargest(k, nums)
-# param_1 = obj.add(val)
-
 class CleanerKthLargest: #Using built-in functions
 
     def __init__(self, k: int, nums: List[int]): #Same complexity
@@ -88,8 +84,3 @@ class CleanerKthLargest: #Using built-in functions
 
         return self.heap[0]
         
-
-
-# Your KthLargest object will be instantiated and called as such:
-# obj = KthLargest(k, nums)
-# param_1 = obj.add(val)
