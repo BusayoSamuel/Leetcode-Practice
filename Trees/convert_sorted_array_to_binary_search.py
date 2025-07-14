@@ -8,7 +8,7 @@ https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/submiss
 #         self.val = val
 #         self.left = left
 #         self.right = right
-class Solution1: #Time complexity O(n), Space complexity O(N)
+class Solution1: #Time complexity O(nlogn) due to slicing, Space complexity O(n)
     def sortedArrayToBST(self, nums: List[int]) -> Optional[TreeNode]:
         if not nums:
             return None
@@ -18,7 +18,7 @@ class Solution1: #Time complexity O(n), Space complexity O(N)
         return node
     
 
-class Solution2: #Alternative structure, same complexity
+class Solution2: #Time complexity O(n), Space complexity O(n)
     def sortedArrayToBST(self, nums: List[int]) -> Optional[TreeNode]:
         def helper(l, r):
             if l > r:
