@@ -30,3 +30,19 @@ class Solution: #Alternative, same complexity
 
         stones.append(0)
         return abs(stones[0])
+
+
+class MyOtherSolution: #Same complexity as above
+    def lastStoneWeight(self, stones: List[int]) -> int:
+        stones = list(map(lambda x: -x, stones))
+        heapq.heapify(stones)
+
+        while len(stones) > 1:
+            weight1 = heapq.heappop(stones)
+            weight2 = heapq.heappop(stones)
+
+            if weight1 != weight2:
+                weight = -abs(weight1-weight2)
+                heapq.heappush(stones, weight)
+
+        return -stones[0] if stones else 0
