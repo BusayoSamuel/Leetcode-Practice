@@ -34,4 +34,21 @@ class Solution2: #Same complexity, Different structure
         root.right = self.mergeTrees(t1.right if t1 else None, t2.right if t2 else None)
         return root
 
+class MySolution: #Same complexity, Different structure
+    def mergeTrees(self, root1: Optional[TreeNode], root2: Optional[TreeNode]) -> Optional[TreeNode]:
+        if not root1 and not root2:
+            return None
+
+        if not root1:
+            return root2
+
+        if not root2:
+            return root1
+
+        root = TreeNode()
+        root.val = root1.val + root2.val
+        root.left = self.mergeTrees(root1.left, root2.left)
+        root.right = self.mergeTrees(root1.right, root2.right)
+        return root
+
     
