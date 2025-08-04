@@ -22,3 +22,26 @@ class Solution: #Time complexity O(n), Space complexity O(n)
             return dfs(root.left, curSum) or dfs(root.right, curSum)
 
         return dfs(root,0)
+
+
+class MySolution: #Same complexity as abovr
+    def hasPathSum(self, root: Optional[TreeNode], targetSum: int) -> bool:
+        def dfs(node, cur):
+            if not node:
+                return False
+
+            if not node.left and not node.right:
+                cur += node.val
+                return cur == targetSum
+
+
+            left = dfs(node.left, cur + node.val)
+            right = dfs(node.right, cur + node.val)
+
+            return left or right
+
+
+        return dfs(root, 0)
+
+
+        
