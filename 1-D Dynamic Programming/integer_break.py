@@ -2,7 +2,7 @@
 https://leetcode.com/problems/integer-break/description/
 """
 
-class MySolution: #Time complexity O(n^n), Space complexity O(n)
+class MySolution: #Time complexity O(n^2), Space complexity O(n)
     def integerBreak(self, n: int) -> int:
         dp = {0:1}
 
