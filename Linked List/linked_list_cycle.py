@@ -20,4 +20,25 @@ class Solution: #Time complexity O(n), #Space complexity O(1)
             if slow == fast:
                 return True
 
+
         return False
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class MyOtherSolution: #Time complexity O(n), Space complexity O(n)
+    def hasCycle(self, head: Optional[ListNode]) -> bool:
+        visited = set()
+        cur = head
+
+        while cur:
+            if cur in visited:
+                return True
+            visited.add(cur)
+            cur = cur.next
+
+        return False
+        
