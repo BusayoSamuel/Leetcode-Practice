@@ -26,3 +26,18 @@ class BetterSolution: #Time complexity O(n) , Space complexity O(n) but if tree 
             return self.rangeSumBST(root.left, low, high) #we go left because the tree is a BST so can assume all values to the right would be greater than high as well
 
         return root.val + self.rangeSumBST(root.left, low, high) + self.rangeSumBST(root.right, low, high)
+
+
+class MySolution: #Not as efficient, but same complexity as above
+    def rangeSumBST(self, root: Optional[TreeNode], low: int, high: int) -> int:
+        if not root:
+            return 0
+        
+        left = self.rangeSumBST(root.left, low, high)
+        right = self.rangeSumBST(root.right, low, high)
+
+        if low <= root.val <= high:
+            return root.val + left + right
+        else:
+            return left + right
+        
