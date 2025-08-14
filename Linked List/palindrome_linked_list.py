@@ -40,3 +40,39 @@ class Solution: #O(n) time complexity, #O(1) space complexity
             curr = temp
 
         return prev
+
+
+class MySolution: #Same complexity as above
+    def isPalindrome(self, head: Optional[ListNode]) -> bool:
+        slow = head
+        fast = head.next
+
+        while fast and fast.next:
+            fast = fast.next.next
+            slow = slow.next
+
+        mid = slow.next
+        slow.next = None
+
+        prev = None
+        cur = mid
+
+        while cur:
+            temp = cur.next
+            cur.next = prev
+            prev = cur
+            cur = temp
+
+        head2 = prev
+
+        while head and head2:
+            if head.val != head2.val:
+                return False
+
+            head = head.next
+            head2 = head2.next
+
+        return True
+
+        
+        
