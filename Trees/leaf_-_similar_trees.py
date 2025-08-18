@@ -29,5 +29,30 @@ class Solution: #Time complexity O(n+m), Space complexity O(n+m) where n is the 
         return leaves1 == leaves2
 
 
+class MySolution: #Same complexity as above
+    def leafSimilar(self, root1: Optional[TreeNode], root2: Optional[TreeNode]) -> bool:
+        def getLeaf(node):
+            cur = []
+
+            if not node:
+                return cur
+
+            if not node.left and not node.right:
+                cur += [node.val]
+            else:
+                cur += getLeaf(node.left) + getLeaf(node.right)
+
+            return cur
+
+
+        leaf1 = getLeaf(root1)
+        leaf2 = getLeaf(root2)
+
+        return leaf1 == leaf2
+
+            
+        
+
+
 
         
