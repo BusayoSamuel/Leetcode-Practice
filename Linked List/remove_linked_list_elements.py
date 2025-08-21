@@ -14,7 +14,7 @@ class Solution1: #O(n) time complexity, #O(1) space complexity
         curr = dummy
 
         while curr:
-            while curr.next and curr.next.val == val:
+            while curr.next and curr.next.val == val: #needs to be a while to catch a series of duplicates
                 curr.next = curr.next.next
 
             curr = curr.next
@@ -36,3 +36,5 @@ class Solution2: #Alternative solution, using two pointers
             curr = curr.next
 
         return dummy.next
+
+
