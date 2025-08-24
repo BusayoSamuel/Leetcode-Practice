@@ -30,4 +30,15 @@ class Solution: #Time complexity O(n) averge case, O(n^2) worst case, Space comp
             elif len(nums) - k > p: return quickselect(p+1, r)
             else: return nums[p] #by sorting in this way, you guarantee that the pivot is in the right position
 
-        return quickselect(0, len(nums)-1)    
+        return quickselect(0, len(nums)-1) 
+
+class NySolution: #Time complexity O(n + klogn), Space complexity O(n)
+    def findKthLargest(self, nums: List[int], k: int) -> int:
+        nums = list(map(lambda x: -x, nums))
+        heapq.heapify(nums)
+        res = None
+
+        for _ in range(k):
+            res = heapq.heappop(nums)
+
+        return -res
