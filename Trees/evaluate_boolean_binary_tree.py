@@ -41,4 +41,18 @@ class IterativeSolution: #Same complexity
                     stack.extend([node, node.left, node.right])
 
         return value[node]
+
+
+class MySolution: #Same complexity
+    def evaluateTree(self, root: Optional[TreeNode]) -> bool:
+        if not root.right and not root.left:
+            return True if root.val else False
+
+        left = self.evaluateTree(root.left)
+        right = self.evaluateTree(root.right)
+        
+        if root.val == 2:
+            return left or right
+        else:
+            return left and right
         
