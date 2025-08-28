@@ -23,3 +23,20 @@ class Solution: #O(n) time complexity, #0(1) space complexity
             curr = curr.next
 
         return head
+
+class MySolution: #Same complexity as above
+    def deleteDuplicates(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        hashset = set()
+        dummy = ListNode(None, head)
+        cur = dummy
+
+        while cur and cur.next:
+            while cur.next and cur.next.val in hashset:
+                cur.next = cur.next.next
+            if cur.next:
+                hashset.add(cur.next.val)
+
+            cur = cur.next
+
+        return dummy.next
+        
