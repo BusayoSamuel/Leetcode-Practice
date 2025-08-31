@@ -9,7 +9,7 @@ class Solution: #Time complexity O(n * m) where n is the number of tasks and m i
         maxHeap = [-cnt for cnt in count.values()]
         heapq.heapify(maxHeap)
 
-        q = deque()
+        q = deque() #pairs of [-cnt, idleTime]
         time = 0
 
         while maxHeap or q:
@@ -21,6 +21,6 @@ class Solution: #Time complexity O(n * m) where n is the number of tasks and m i
                     q.append((cnt, time + n))
 
             if q and q[0][1] == time:
-                heapq.heappush(maxHeap, q.popleft()[0])
+                heapq.heappush(maxHeap, q.popleft()[0]) 
 
         return time
