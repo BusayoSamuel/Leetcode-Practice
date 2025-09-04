@@ -16,3 +16,18 @@ class Solution: #O(n) time complexity, #O(1) space complexity
             fast = fast.next.next
 
         return slow
+
+
+class OtherSolution: #Same complexity as above
+    def middleNode(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        n, cur = 0, head
+        while cur:
+            cur = cur.next
+            n += 1
+
+        n //= 2
+        cur = head
+        while n:
+            n -= 1
+            cur = cur.next
+        return cur
