@@ -2,7 +2,7 @@
 https://leetcode.com/problems/design-twitter/description/
 """
 
-class Twitter: #My solution
+class Twitter: #My Inefficient solution
 
     def __init__(self):
         self.feed = [] #[[userId, tweetId]] - a central feed is kept for later filtering
