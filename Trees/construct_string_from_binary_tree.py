@@ -40,3 +40,18 @@ class Solution2: #Same time complexity but more efficient, string concatenation 
 
         preorder(root)
         return "".join(res)[1:-1]
+
+class MySolution: #Same time complexity with string concatenation
+    def tree2str(self, root: Optional[TreeNode]) -> str:
+        if not root:
+            return ""
+        
+        left = self.tree2str(root.left)
+        right = self.tree2str(root.right)
+
+        if not left and not right:
+            return str(root.val)
+        elif left and not right:
+            return str(root.val) + "(" + left + ")"
+        else:
+            return str(root.val) + "(" + left + ")" + "(" + right + ")"
