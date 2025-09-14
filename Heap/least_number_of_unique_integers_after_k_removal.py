@@ -23,6 +23,25 @@ class MySolution: #Time complexity O(nlogn), Space complexity O(n)
                 return len(numfreq) + 1
 
         return len(numfreq)
+
+class MyOtherSolution: #Same complexity as above
+    def findLeastNumOfUniqueInts(self, arr: List[int], k: int) -> int:
+        counts = Counter(arr)
+        minheap = [[freq, val] for val, freq in counts.items()]
+        heapq.heapify(minheap)
+
+        while k and minheap:
+            freq, val = heapq.heappop(minheap)
+
+            newfreq = max(0, freq - k)
+
+            if newfreq:
+                k = 0
+                heapq.heappush(minheap, [freq, val])
+            else:
+                k -= freq
+
+        return len(minheap)
     
 
 class CleanerSolution: #Same complexity
@@ -63,4 +82,5 @@ class BetterSolution: #Time complexity O(n), Space complexity O(n)
                 break
 
         return res
+
 
