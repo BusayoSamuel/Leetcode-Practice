@@ -30,3 +30,40 @@ class MySolution: #Time complexity O(n), Space complexity O(1)
         l2_tail.next = l1_end
 
         return list1
+
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class MyOtherSolution: #Same complexity as above
+    def mergeInBetween(self, list1: ListNode, a: int, b: int, list2: ListNode) -> ListNode:
+        dummy1 = ListNode(None, list1)
+        dummy2 = ListNode(None, list2)
+
+        start1 = dummy1
+        end1 = dummy1.next
+
+        while a or b:
+            if a:
+                start1 = start1.next
+                a -= 1
+            if b:
+                end1 = end1.next
+                b -=1
+
+        end1 = end1.next
+
+        start2 = dummy2.next
+        end2 = dummy2
+
+        while end2.next:
+            end2 = end2.next
+
+
+        start1.next = start2
+        end2.next = end1
+
+        return dummy1.next
+        
