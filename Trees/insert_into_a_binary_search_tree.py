@@ -32,29 +32,19 @@ class Solution: #Time complexity O(logn) , Space complexity O(logn) because it's
         return insert(root)
     
 
-# Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
-class SimplerSolution: #Same time complexity
+class MySolution: #Same complexity
     def insertIntoBST(self, root: Optional[TreeNode], val: int) -> Optional[TreeNode]:
         if not root:
             return TreeNode(val)
-        if val > root.val:
+
+        if val >= root.val:
             root.right = self.insertIntoBST(root.right, val)
         else:
             root.left = self.insertIntoBST(root.left, val)
+
         return root
 
 
-# Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
 class IterativeSolution: #Time complexity O(logn), Space complexity O(1)
     def insertIntoBST(self, root: Optional[TreeNode], val: int) -> Optional[TreeNode]:
         curNode = root
@@ -75,3 +65,6 @@ class IterativeSolution: #Time complexity O(logn), Space complexity O(1)
                 else:
                     curNode.left = TreeNode(val)
                     return root
+
+
+
