@@ -22,10 +22,6 @@ class Solution: #Time complexity O(n), Space complexity O(n)
             if node.val == root.val: m = len(array) - 1
             dfs(node.right)
 
-
-        
-
-
         def struct(arr):
             l = 0 
             r = len(arr) - 1
@@ -57,16 +53,16 @@ class Solution: #Time compleixty O(logn), Space compl;exity O(1)
         elif key < root.val:
             root.left = self.deleteNode(root.left, key)
         else:
-            if not root.left:
+            if not root.left: #replace with subtree on right
                 return root.right
-            elif not root.right:
+            elif not root.right: #replace with subtree on left
                 return root.left
-            else:
+            else: #find largest possible value on left
                 cur = root.left
                 while cur.right:
                     cur = cur.right
                 
-                root.val = cur.val
-                root.left = self.deleteNode(root.left, root.val)
+                root.val = cur.val #replace ith largest value left
+                root.left = self.deleteNode(root.left, root.val) #delete largest value from left subtree
 
         return root
