@@ -34,3 +34,22 @@ class Solution: #Time complexity O(n), Space complexity O(n)
                     res.append(node.val)
 
         return res
+
+class Solution: #Same complexity as above
+    def rightSideView(self, root: Optional[TreeNode]) -> List[int]:
+        res = []
+        q = deque([root])
+
+        while q:
+            rightSide = None
+            qLen = len(q)
+
+            for i in range(qLen):
+                node = q.popleft()
+                if node:
+                    rightSide = node
+                    q.append(node.left)
+                    q.append(node.right)
+            if rightSide:
+                res.append(rightSide.val)
+        return res
