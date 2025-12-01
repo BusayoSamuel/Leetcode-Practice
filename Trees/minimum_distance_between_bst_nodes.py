@@ -31,3 +31,33 @@ class Solution: #Time complexity O(n), Space complexity O(1)
         dfs(root)
 
         return res
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class MySolution: #Same complexity as above
+    def minDiffInBST(self, root: Optional[TreeNode]) -> int:
+        res = math.inf
+        prev = None
+
+        def dfs(node):
+            nonlocal res
+            nonlocal prev
+
+            if not node:
+                return
+
+            dfs(node.left)
+            if prev != None:
+                res = min(res, abs(node.val - prev))
+            prev = node.val
+            dfs(node.right)
+
+        dfs(root)
+        return res
+        
+
+        
