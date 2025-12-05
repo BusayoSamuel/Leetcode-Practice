@@ -40,5 +40,22 @@ class Solution: #Time complexity O(n), Space complexity O(k)
 
         return False
 
+class MyOtherSolution: #Time complexity O(n), Space complexity O(n)
+    def checkSubarraySum(self, nums: List[int], k: int) -> bool:
+        prefix = {}
+        curSum = 0
+
+        for i, num in enumerate(nums):
+            curSum += num
+
+            rem = curSum % k
+
+            if (not rem and i >= 1) or (rem in prefix and i - prefix[rem] >= 2):
+                return True
+            
+            prefix[curSum % k] = min(prefix.get(curSum % k, i), i)
+
+        return False 
+
 
         
