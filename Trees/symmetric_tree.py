@@ -57,3 +57,30 @@ class IterativeSolution: #Time complexity O(n), Space complexity O(1)
 
         return not qright and not qleft
 
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class MySolution: #Time complexity O(n), Space complexity O(logn)
+    def isSymmetric(self, root: Optional[TreeNode]) -> bool:
+        if not root:
+            return True
+
+        def dfs(left, right):
+            if not left and not right:
+                return True
+
+            if not left or not right:
+                return False
+
+            if left.val != right.val:
+                return False
+            
+            return left.val == right.val and dfs(left.left, right.right) and dfs(left.right, right.left)
+
+
+        return dfs(root.left, root.right)
+
