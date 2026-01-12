@@ -2,7 +2,7 @@
 https://leetcode.com/problems/minimum-time-to-collect-all-apples-in-a-tree/description/
 """
 
-class Solution:
+class Solution: #Time complexity O(V + E), Space complexity O(V + E)
     def minTime(self, n: int, edges: List[List[int]], hasApple: List[bool]) -> int:
         adj = {i:[] for i in range(n)} #a mapping between each vertex and their neighbours
 
