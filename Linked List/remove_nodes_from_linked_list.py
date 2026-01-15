@@ -38,3 +38,28 @@ class MySolution: #Time complexity O(n), Space complexity O(1)
         res = reverse(tail)
 
         return res
+
+class MyOtherSolution: #Same complexity as above
+    def removeNodes(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        def reverse(node):
+            prev = None
+            cur = node
+
+            while cur:
+                tmp = cur.next
+                cur.next = prev
+                prev = cur
+                cur = tmp
+
+            return prev
+
+
+        head = reverse(head)
+        cur = head
+    
+        while cur:
+            while cur.next and cur.next.val < cur.val:
+                cur.next = cur.next.next
+            cur = cur.next
+
+        return reverse(head)
