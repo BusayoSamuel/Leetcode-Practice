@@ -62,3 +62,38 @@ class Solution2: #Alternative structure
             prev = prev.next
             slow = slow.next
         return res
+
+class MyOtherSolution: #Same complexity as above
+    def pairSum(self, head: Optional[ListNode]) -> int:
+        def reverse(node):
+            prev = None
+            cur = node
+
+            while cur:
+                tmp = cur.next
+                cur.next = prev
+                prev = cur
+                cur = tmp
+
+            return prev
+
+        slow = head
+        fast = head.next
+
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+
+        l1 = head
+        l2 = reverse(slow.next)
+        slow.next = None
+
+        res = 0
+        while l1 and l2:
+            res = max(res, l1.val + l2.val)
+            l1 = l1.next
+            l2 = l2.next
+
+        return res
+
+        
