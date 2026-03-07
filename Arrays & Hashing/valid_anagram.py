@@ -38,3 +38,18 @@ class Solution2: #O(n) time complexity, #O(1) space complexity because there are
         for k in count:
             if k: return False
         return True
+
+class Solution: #O(n) Time complexity, #O(1) space complexity because there are only 26 lowercase letters
+    def isAnagram(self, s: str, t: str) -> bool:
+        scount = Counter(s)
+
+        for c in t:
+            if c in scount:
+                scount[c] -= 1
+                if not scount[c]:
+                    del scount[c]
+            else:
+                return False
+
+        return not scount or min(scount.values()) == max(scount.values()) == 0
+        
