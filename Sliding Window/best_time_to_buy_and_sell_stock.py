@@ -14,5 +14,22 @@ class Solution: #O(n) time complexity, #O(1) space complexity
                 l = r
 
         return res
+
+class MySolution: #Same complexity as above
+    def maxProfit(self, prices: List[int]) -> int:
+        l = 0
+        res = 0
+
+        for r in range(len(prices)):
+            if prices[r] < prices[l]:
+                l = r
+
+            if prices[r] > prices[l]:
+                res = max(res, prices[r] - prices[l])
+
+        return res
+            
+            
+        
     
 
