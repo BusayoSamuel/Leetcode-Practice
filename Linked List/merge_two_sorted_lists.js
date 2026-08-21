@@ -18,6 +18,7 @@ class Solution {
      * @param {ListNode} list1
      * @param {ListNode} list2
      * @return {ListNode}
+     * Time complexity O(n+m), Space complexity O(1)
      */
     mergeTwoLists(list1, list2) {
         const dummy = new ListNode()
