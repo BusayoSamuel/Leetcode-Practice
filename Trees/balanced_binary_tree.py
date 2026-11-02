@@ -38,3 +38,22 @@ class MySolution: #Same complexity as above
 
 
         return dfs(root)[0]
+
+class MyOtherSolution: #Same complexity as above
+    def isBalanced(self, root: Optional[TreeNode]) -> bool:
+
+        def dfs(node):
+            if not node:
+                return [0, True]
+
+            lHeight, lBal = dfs(node.left)
+            rHeight, rBal = dfs(node.right)
+            
+
+            if abs(lHeight - rHeight) > 1:
+                return [1 + max(lHeight, rHeight), False]
+            else:
+                return [1 + max(lHeight, rHeight), lBal and rBal]
+
+        return dfs(root)[1]
+        
