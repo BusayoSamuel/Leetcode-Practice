@@ -54,4 +54,18 @@ class MySolution: #Same complexity as above
 
 
         return dfs(p, q)
+
+
+       self.right = right
+
+class MyOtherSolution: #Same complexity as above
+    def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
+        if not p and not q:
+            return True
+        elif p and q:
+            return (p.val == q.val) and self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
+        else:
+            return False
+
+         
         
